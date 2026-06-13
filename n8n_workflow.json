@@ -1,0 +1,188 @@
+{
+  "name": "Automated Lead Enrichment & AI SEO Pitch Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "enrich-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e44d3209-a1b4-4b5a-ba3d-d602a8069502",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gemini-2.5-flash",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "c62fb33f-ec03-4f96-bde3-efdeff1d6c8b",
+      "name": "Gemini Chat Model",
+      "type": "n8n-nodes-base.googleGeminiChatModel",
+      "typeVersion": 1,
+      "position": [
+        550,
+        500
+      ],
+      "credentials": {
+        "googleApiKey": {
+          "id": "google-gemini-credentials-id",
+          "name": "Google Gemini API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a highly skilled Sales Outreach Copywriter and SEO consultant.\n\nGenerate a personalized, non-spammy, highly compelling outreach email pitch targeting the business owner of {{ $json.body.name }}.\n\nHere is the diagnostic data we collected from their online presence:\n- Business Name: {{ $json.body.name }}\n- Website: {{ $json.body.website }}\n- Google Maps Rating: {{ $json.body.rating }} Stars ({{ $json.body.reviewsCount }} reviews)\n- Contact Phone: {{ $json.body.phone }}\n- Website Loading Speed: {{ $json.body.audit.speed }} (Load time audit category)\n\nAudit Checklist Findings:\n- Facebook Ads Tracking Pixel: {{ $json.body.audit.pixels.facebook ? 'INSTALLED' : 'MISSING ❌' }}\n- Google Analytics Tag: {{ $json.body.audit.pixels.googleAnalytics ? 'INSTALLED' : 'MISSING ❌' }}\n- TikTok Ads Pixel: {{ $json.body.audit.pixels.tiktok ? 'INSTALLED' : 'MISSING ❌' }}\n- Meta Description tag (for Google Search): {{ $json.body.audit.seo.hasMetaDescription ? 'INSTALLED' : 'MISSING ❌' }}\n- H1 Headers (crucial for SEO layout): {{ $json.body.audit.seo.hasH1 ? 'INSTALLED' : 'MISSING ❌' }}\n- OpenGraph Meta Tags (for social sharing previews): {{ $json.body.audit.seo.hasOpenGraph ? 'INSTALLED' : 'MISSING ❌' }}\n\nOutreach Copywriting Rules:\n1. Keep it short (under 200 words). Be polite, professional, and helpful. Do NOT sound like a generic templates salesperson.\n2. Start by praising their business rating or website aspect if applicable (e.g. \"Congrats on the solid {{ $json.body.rating }} rating on Google Maps!\").\n3. Gently point out ONE or TWO critical deficiencies found (e.g. \"I noticed your site doesn't have a Facebook pixel configured, which means you can't run retargeting ads or measure conversions effectively\").\n4. Offer to fix these specific issues for them or give them a free 15-minute diagnostic call to show them how to do it.\n5. End with a simple call to action (e.g., \"Are you open to a quick call this Thursday at 2 PM?\").\n6. Do not include placeholders like [My Name] or [My Company]. Write it ready to send from 'the audit team'.\n\nDraft the email now. Provide a Subject line first, followed by the Body.",
+        "hasSystemInstruction": true,
+        "systemInstruction": "You are a professional, helpful local agency consultant writing highly personalized outreach scripts. Never use robotic/cliché sales jargon."
+      },
+      "id": "e2a2205c-5ab6-4767-a89c-0c15147814b7",
+      "name": "Generate Outreach Pitch",
+      "type": "n8n-nodes-base.advancedLanguageModel",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"emailDraft\": \"{{ $json.text }}\",\n  \"leadId\": \"{{ $('Webhook Trigger').item.json.body.id }}\",\n  \"auditedAt\": \"{{ new Date().toISOString() }}\"\n}",
+        "options": {}
+      },
+      "id": "b32c6114-1188-4fb6-a496-d2ef29f795db",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        750,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "your-google-sheet-id",
+          "mode": "id"
+        },
+        "sheetName": "Sheet1",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Business Name": "={{ $('Webhook Trigger').item.json.body.name }}",
+            "Website": "={{ $('Webhook Trigger').item.json.body.website }}",
+            "Phone": "={{ $('Webhook Trigger').item.json.body.phone }}",
+            "SEO Speed": "={{ $('Webhook Trigger').item.json.body.audit.speed }}",
+            "FB Pixel": "={{ $('Webhook Trigger').item.json.body.audit.pixels.facebook }}",
+            "Email Draft": "={{ $json.text }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "f5e921be-4d1b-419b-ab01-447545ce1ee1",
+      "name": "Log in Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        950,
+        200
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-oauth2-id",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel": "#leads",
+        "text": "=🔔 *New Enriched Lead Ready!* \n*Business:* {{ $('Webhook Trigger').item.json.body.name }}\n*Email Pitch Drafted:* \n```\n{{ $json.text }}\n```",
+        "otherOptions": {}
+      },
+      "id": "c11d2e1c-5d1b-42eb-bb02-e221b0ee1111",
+      "name": "Send Slack Notification",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [
+        950,
+        400
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "slack-api-id",
+          "name": "Slack API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate Outreach Pitch",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Outreach Pitch",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Outreach Pitch": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Log in Google Sheets",
+            "index": 0
+          },
+          {
+            "node": "Send Slack Notification",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "active": false,
+  "pinData": {}
+}
