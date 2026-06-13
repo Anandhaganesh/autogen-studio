@@ -182,6 +182,6 @@ app.get('*', (req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`[Server] Multi-Agent backend server listening at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`[Server] Multi-Agent backend server listening at http://0.0.0.0:${PORT}`);
 });

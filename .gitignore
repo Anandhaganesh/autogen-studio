@@ -12,6 +12,7 @@ build/
 # Local databases and logs
 leads_db.json
 db.json
+agents_db.json
 uploads/screenshots/
 *.log
 
