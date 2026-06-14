@@ -62,10 +62,10 @@ export default function App() {
   
   // Settings & Status
   const [showSettings, setShowSettings] = useState(false);
-  const [settings, setSettings] = useState({ geminiApiKey: '', geminiModel: 'gemini-2.5-flash' });
+  const [settings, setSettings] = useState({ geminiApiKey: '', geminiModel: 'gemini-2.0-flash' });
   const [apiStatus, setApiStatus] = useState({ envKeyConfigured: false, hasKey: false, agentsCount: 0, runsCount: 0 });
   const [customApiKey, setCustomApiKey] = useState('');
-  const [selectedModel, setSelectedModel] = useState('gemini-2.5-flash');
+  const [selectedModel, setSelectedModel] = useState('gemini-2.0-flash');
   
   // Tab selector for workspace: 'chat' (Agent dialogue) or 'report' (Final Report)
   const [workspaceTab, setWorkspaceTab] = useState('chat');
@@ -137,9 +137,9 @@ export default function App() {
       if (res.ok) {
         const data = await res.json();
         setApiStatus(data);
-        setSettings(data.settings || { geminiApiKey: '', geminiModel: 'gemini-2.5-flash' });
+        setSettings(data.settings || { geminiApiKey: '', geminiModel: 'gemini-2.0-flash' });
         setCustomApiKey(data.settings?.geminiApiKey || '');
-        setSelectedModel(data.settings?.geminiModel || 'gemini-2.5-flash');
+        setSelectedModel(data.settings?.geminiModel || 'gemini-2.0-flash');
       }
     } catch (err) {
       console.error("Failed to fetch backend status:", err);

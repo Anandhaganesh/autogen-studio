@@ -163,7 +163,14 @@ export class AgentsDb {
   }
 
   getSettings() {
-    return this.data.settings || { geminiApiKey: '' };
+    const settings = this.data.settings || { geminiApiKey: '' };
+    // Migrate off of gemini-2.5-flash due to strict daily rate limits on the free tier
+    if (!settings.geminiModel || settings.geminiModel === 'gemini-2.5-flash') {
+      settings.geminiModel = 'gemini-2.0-flash';
+      this.data.settings = settings;
+      this.save();
+    }
+    return settings;
   }
 
   updateSettings(settings) {
