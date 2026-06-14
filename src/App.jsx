@@ -731,6 +731,19 @@ export default function App() {
                     </div>
                   )}
 
+                  {/* Failure Status */}
+                  {selectedRun.status === 'failed' && (
+                    <div className="glass-panel animate-fade-in" style={{ padding: '18px', background: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '12px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                      <AlertCircle style={{ width: '16px', height: '16px', color: '#ef4444', flexShrink: 0, marginTop: '2px' }} />
+                      <div>
+                        <h5 style={{ fontSize: '12px', fontWeight: 'bold', color: '#ef4444', marginBottom: '4px' }}>Simulation Failed</h5>
+                        <p style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                          {selectedRun.finalReport || 'An unknown error occurred during orchestration.'}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   <div ref={chatEndRef} />
                 </div>
               </div>
