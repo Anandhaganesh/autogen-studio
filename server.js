@@ -51,8 +51,8 @@ app.get('/api/status', (req, res) => {
 // Update Settings
 app.post('/api/settings', (req, res) => {
   try {
-    const { geminiApiKey, geminiModel } = req.body;
-    const updated = db.updateSettings({ geminiApiKey, geminiModel });
+    const { geminiApiKey, geminiModel, apiProvider, hfToken, hfModel } = req.body;
+    const updated = db.updateSettings({ geminiApiKey, geminiModel, apiProvider, hfToken, hfModel });
     res.json({ success: true, settings: updated });
   } catch (err) {
     res.status(500).json({ error: err.message });

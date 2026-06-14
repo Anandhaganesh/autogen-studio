@@ -62,10 +62,13 @@ export default function App() {
   
   // Settings & Status
   const [showSettings, setShowSettings] = useState(false);
-  const [settings, setSettings] = useState({ geminiApiKey: '', geminiModel: 'gemini-2.0-flash' });
+  const [settings, setSettings] = useState({ geminiApiKey: '', geminiModel: 'gemini-2.0-flash', apiProvider: 'gemini', hfToken: '', hfModel: 'Qwen/Qwen2.5-72B-Instruct' });
   const [apiStatus, setApiStatus] = useState({ envKeyConfigured: false, hasKey: false, agentsCount: 0, runsCount: 0 });
   const [customApiKey, setCustomApiKey] = useState('');
   const [selectedModel, setSelectedModel] = useState('gemini-2.0-flash');
+  const [selectedProvider, setSelectedProvider] = useState('gemini');
+  const [hfToken, setHfToken] = useState('');
+  const [selectedHfModel, setSelectedHfModel] = useState('Qwen/Qwen2.5-72B-Instruct');
   
   // Tab selector for workspace: 'chat' (Agent dialogue) or 'report' (Final Report)
   const [workspaceTab, setWorkspaceTab] = useState('chat');
@@ -137,9 +140,12 @@ export default function App() {
       if (res.ok) {
         const data = await res.json();
         setApiStatus(data);
-        setSettings(data.settings || { geminiApiKey: '', geminiModel: 'gemini-2.0-flash' });
+        setSettings(data.settings || { geminiApiKey: '', geminiModel: 'gemini-2.0-flash', apiProvider: 'gemini', hfToken: '', hfModel: 'Qwen/Qwen2.5-72B-Instruct' });
         setCustomApiKey(data.settings?.geminiApiKey || '');
         setSelectedModel(data.settings?.geminiModel || 'gemini-2.0-flash');
+        setSelectedProvider(data.settings?.apiProvider || 'gemini');
+        setHfToken(data.settings?.hfToken || '');
+        setSelectedHfModel(data.settings?.hfModel || 'Qwen/Qwen2.5-72B-Instruct');
       }
     } catch (err) {
       console.error("Failed to fetch backend status:", err);
@@ -197,7 +203,13 @@ export default function App() {
       const res = await fetch('/api/settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ geminiApiKey: customApiKey, geminiModel: selectedModel })
+        body: JSON.stringify({ 
+          geminiApiKey: customApiKey, 
+          geminiModel: selectedModel,
+          apiProvider: selectedProvider,
+          hfToken: hfToken,
+          hfModel: selectedHfModel
+        })
       });
       if (res.ok) {
         fetchStatus();
@@ -349,6 +361,7 @@ export default function App() {
   };
 
   const activeAgentId = getActiveAgentId();
+  const isKeyConfigured = settings.apiProvider === 'huggingface' ? !!settings.hfToken : apiStatus.hasKey;
 
   return (
     <div className="app-container">
@@ -374,17 +387,31 @@ export default function App() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid var(--border-light)', fontSize: '11px' }}>
             <Server style={{ width: '14px', height: '14px', color: 'var(--neon-cyan)' }} />
             <span style={{ color: 'var(--text-secondary)' }}>Model status:</span>
-            <span style={{ fontWeight: '800', color: 'var(--neon-cyan)' }}>{settings.geminiModel || 'gemini-2.5-flash'}</span>
+            <span style={{ fontWeight: '800', color: 'var(--neon-cyan)' }}>
+              {settings.apiProvider === 'huggingface' ? (settings.hfModel || 'Qwen/Qwen2.5-72B-Instruct') : (settings.geminiModel || 'gemini-2.0-flash')}
+            </span>
           </div>
 
-          {apiStatus.hasKey ? (
-            <span className="badge badge-ready" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              <CheckCircle2 style={{ width: '12px', height: '12px' }} /> Grounding Connected
-            </span>
+          {settings.apiProvider === 'huggingface' ? (
+            settings.hfToken ? (
+              <span className="badge badge-ready" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <CheckCircle2 style={{ width: '12px', height: '12px' }} /> Hugging Face Active
+              </span>
+            ) : (
+              <span className="badge badge-contacted" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', animation: 'pulseGlow 2.3s infinite' }}>
+                <AlertCircle style={{ width: '12px', height: '12px' }} /> Configure Token
+              </span>
+            )
           ) : (
-            <span className="badge badge-contacted" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', animation: 'pulseGlow 2.3s infinite' }}>
-              <AlertCircle style={{ width: '12px', height: '12px' }} /> Configure Key
-            </span>
+            apiStatus.hasKey ? (
+              <span className="badge badge-ready" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <CheckCircle2 style={{ width: '12px', height: '12px' }} /> Grounding Connected
+              </span>
+            ) : (
+              <span className="badge badge-contacted" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', animation: 'pulseGlow 2.3s infinite' }}>
+                <AlertCircle style={{ width: '12px', height: '12px' }} /> Configure Key
+              </span>
+            )
           )}
 
           <button 
@@ -404,7 +431,7 @@ export default function App() {
           <div style={{ maxWidth: '480px', margin: '0 auto' }}>
             <div className="flex-row justify-between align-center" style={{ marginBottom: '14px' }}>
               <h3 className="text-gradient-cyan-blue" style={{ fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Key style={{ width: '16px', height: '16px', color: 'var(--neon-cyan)' }} /> AI Studio Setup
+                <Key style={{ width: '16px', height: '16px', color: 'var(--neon-cyan)' }} /> Model & API Configuration
               </h3>
               <button onClick={() => setShowSettings(false)} style={{ background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer' }}>
                 <X style={{ width: '16px', height: '16px' }} />
@@ -412,41 +439,92 @@ export default function App() {
             </div>
             
             <p style={{ fontSize: '11px', color: 'var(--text-secondary)', marginBottom: '16px', lineHeight: '1.5' }}>
-              Paste your Google AI Studio API Key and select your preferred LLM model. Keys are stored securely in your dashboard configurations.
+              Configure your API keys and select your preferred LLM provider. Switch to Hugging Face if you run out of Google AI Studio quota.
             </p>
 
             <form onSubmit={handleSaveSettings} className="flex-col gap-3">
               <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px' }}>
-                <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Gemini API Key:</label>
-                <input 
-                  type="password" 
-                  placeholder="AI Studio API Key (AIzaSy...)" 
-                  value={customApiKey}
-                  onChange={(e) => setCustomApiKey(e.target.value)}
-                  className="custom-input"
-                  required
-                />
-              </div>
-
-              <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '16px' }}>
-                <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Gemini Model Selection:</label>
+                <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>API Provider:</label>
                 <select 
-                  value={selectedModel}
-                  onChange={(e) => setSelectedModel(e.target.value)}
+                  value={selectedProvider}
+                  onChange={(e) => setSelectedProvider(e.target.value)}
                   className="custom-input"
                   style={{ background: 'var(--bg-input)', cursor: 'pointer', appearance: 'auto' }}
                 >
-                  <option value="gemini-2.5-flash">Gemini 2.5 Flash (Default - strict 20/day quota)</option>
-                  <option value="gemini-2.5-pro">Gemini 2.5 Pro (Advanced - strict 50/day quota)</option>
-                  <option value="gemini-2.0-flash">Gemini 2.0 Flash (Fast & responsive - recommended)</option>
-                  <option value="gemini-1.5-flash">Gemini 1.5 Flash (Highest daily free-tier quota)</option>
-                  <option value="gemini-1.5-pro">Gemini 1.5 Pro (Alternative Pro)</option>
+                  <option value="gemini">Google Gemini (AI Studio)</option>
+                  <option value="huggingface">Hugging Face Serverless (Free / Unlimited Quota)</option>
                 </select>
               </div>
+
+              {selectedProvider === 'gemini' ? (
+                <>
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px' }}>
+                    <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Gemini API Key:</label>
+                    <input 
+                      type="password" 
+                      placeholder="AI Studio API Key (AIzaSy...)" 
+                      value={customApiKey}
+                      onChange={(e) => setCustomApiKey(e.target.value)}
+                      className="custom-input"
+                      required={selectedProvider === 'gemini'}
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '16px' }}>
+                    <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Gemini Model Selection:</label>
+                    <select 
+                      value={selectedModel}
+                      onChange={(e) => setSelectedModel(e.target.value)}
+                      className="custom-input"
+                      style={{ background: 'var(--bg-input)', cursor: 'pointer', appearance: 'auto' }}
+                    >
+                      <option value="gemini-2.0-flash">Gemini 2.0 Flash (Fast & recommended)</option>
+                      <option value="gemini-1.5-flash">Gemini 1.5 Flash (Highest daily free-tier quota)</option>
+                      <option value="gemini-2.5-pro">Gemini 2.5 Pro (Advanced - strict 50/day quota)</option>
+                      <option value="gemini-1.5-pro">Gemini 1.5 Pro (Alternative Pro)</option>
+                      <option value="gemini-2.5-flash">Gemini 2.5 Flash (Strict 20/day quota)</option>
+                    </select>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px' }}>
+                    <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Hugging Face User Access Token:</label>
+                    <input 
+                      type="password" 
+                      placeholder="Hugging Face Token (hf_...)" 
+                      value={hfToken}
+                      onChange={(e) => setHfToken(e.target.value)}
+                      className="custom-input"
+                      required={selectedProvider === 'huggingface'}
+                    />
+                  </div>
+
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '16px' }}>
+                    <label style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 'bold' }}>Hugging Face Model Selection:</label>
+                    <select 
+                      value={selectedHfModel}
+                      onChange={(e) => setSelectedHfModel(e.target.value)}
+                      className="custom-input"
+                      style={{ background: 'var(--bg-input)', cursor: 'pointer', appearance: 'auto' }}
+                    >
+                      <option value="Qwen/Qwen2.5-72B-Instruct">Qwen 2.5 72B Instruct (Highly capable, no terms - Recommended)</option>
+                      <option value="meta-llama/Llama-3.3-70B-Instruct">Llama 3.3 70B Instruct (Powerful - requires approved access on HF)</option>
+                      <option value="mistralai/Mistral-7B-Instruct-v0.3">Mistral 7B Instruct v0.3 (Fast, lightweight)</option>
+                      <option value="microsoft/Phi-3-mini-128k-instruct">Microsoft Phi-3 Mini (Ultra-fast, lightweight)</option>
+                    </select>
+                  </div>
+                </>
+              )}
               
               <div className="flex-row justify-between align-center" style={{ marginTop: '5px' }}>
-                <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '10px', color: 'var(--neon-cyan)', textDecoration: 'underline' }}>
-                  Get free key here (30 seconds)
+                <a 
+                  href={selectedProvider === 'gemini' ? "https://aistudio.google.com/" : "https://huggingface.co/settings/tokens"} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ fontSize: '10px', color: 'var(--neon-cyan)', textDecoration: 'underline' }}
+                >
+                  {selectedProvider === 'gemini' ? "Get free Gemini key (30 seconds)" : "Get Hugging Face Token (30 seconds)"}
                 </a>
                 <button type="submit" className="btn btn-primary">Save Settings</button>
               </div>
@@ -633,7 +711,7 @@ export default function App() {
                   className="custom-input"
                   style={{ paddingRight: '40px' }}
                   required
-                  disabled={isSimulating || !apiStatus.hasKey}
+                  disabled={isSimulating || !isKeyConfigured}
                 />
                 <Globe style={{ width: '16px', height: '16px', color: 'var(--text-muted)', position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               </div>
@@ -641,7 +719,7 @@ export default function App() {
                 type="submit" 
                 className="btn btn-primary"
                 style={{ padding: '10px 20px', borderRadius: '12px' }}
-                disabled={isSimulating || !topic.trim() || !apiStatus.hasKey}
+                disabled={isSimulating || !topic.trim() || !isKeyConfigured}
               >
                 {isSimulating ? (
                   <>
