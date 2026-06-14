@@ -64,7 +64,7 @@ async function generateHFContentWithRetry(model, prompt, systemInstruction, hfTo
       messages.push({ role: "user", content: prompt });
 
       const response = await fetch(
-        `https://api-inference.huggingface.co/v1/chat/completions`,
+        `https://router.huggingface.co/v1/chat/completions`,
         {
           headers: {
             Authorization: `Bearer ${hfToken}`,
@@ -114,7 +114,8 @@ async function generateHFContentWithRetry(model, prompt, systemInstruction, hfTo
       }
       attempt++;
       const delayMs = Math.pow(2, attempt) * 2000;
-      console.warn(`[AgentEngine][HF] Error. Attempt ${attempt}/${maxRetries}. Retrying in ${delayMs / 1000}s... Error: ${err.message}`);
+      const causeStr = err.cause ? ` (Cause: ${err.cause.message || err.cause})` : '';
+      console.warn(`[AgentEngine][HF] Error. Attempt ${attempt}/${maxRetries}. Retrying in ${delayMs / 1000}s... Error: ${err.message}${causeStr}`);
       await sleep(delayMs);
     }
   }
@@ -219,9 +220,10 @@ export async function runSimulation(runId, topic, agents, geminiApiKey, db) {
 
   } catch (error) {
     console.error(`[Simulation][${runId}] Run failed with error:`, error);
+    const errorDetails = error.cause ? `${error.message} (Cause: ${error.cause.message || error.cause})` : error.message;
     db.updateRun(runId, {
       status: 'failed',
-      finalReport: `An error occurred during multi-agent orchestration: ${error.message}`
+      finalReport: `An error occurred during multi-agent orchestration: ${errorDetails}`
     });
   }
 }
