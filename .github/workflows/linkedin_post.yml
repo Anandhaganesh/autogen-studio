@@ -1,0 +1,47 @@
+name: LinkedIn Daily Auto-Post
+
+on:
+  # Runs every day at 8:30 AM IST = 3:00 AM UTC
+  schedule:
+    - cron: '0 3 * * *'
+
+  # Also allows manual trigger from GitHub website (useful from phone!)
+  workflow_dispatch:
+    inputs:
+      force_day:
+        description: 'Force post a specific day (leave empty for auto)'
+        required: false
+        default: ''
+
+jobs:
+  post-to-linkedin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit updated linkedin_posts.json back
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 📤 Post to LinkedIn
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+        run: node linkedin_github_post.js
+
+      - name: 💾 Commit Updated Post Status
+        run: |
+          git config --global user.name  "LinkedIn Campaign Bot"
+          git config --global user.email "campaign-bot@github-actions.com"
+          git add linkedin_posts.json campaign_log.txt
+          git diff --staged --quiet || git commit -m "✅ Day posted — $(date '+%Y-%m-%d %H:%M IST')"
+          git push
