@@ -1,0 +1,6 @@
+[2026-06-19T14:09:10.684Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-19T14:09:10.688Z] Posting Day 1: "The Spark — Why I started Gen AI"
+[2026-06-19T14:09:11.467Z] ✅ SUCCESS: Day 1 posted! LinkedIn Post ID: urn:li:share:7473738657011560448
+[2026-06-19T14:09:11.467Z] 📝 linkedin_posts.json updated — Day 1 marked as sent.
+[2026-06-19T14:09:11.468Z] 📊 14 posts remaining in campaign.
+[2026-06-19T14:09:11.468Z] ⏭️  Next up: Day 2 — "Prompt Engineering — The skill nobody talks about enough" (tomorrow at 8:30 AM IST)
