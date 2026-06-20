@@ -28,7 +28,7 @@
     {
       "day": 2,
       "theme": "Prompt Engineering — The skill nobody talks about enough",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "Prompt engineering is not typing questions into ChatGPT.\n\nIt's designing instructions that make a language model reason exactly the way you need it to. And it's the highest-leverage skill I picked up in Gen AI.\n\nHere are 5 techniques that actually changed how I build AI systems 👇\n\n🔹 1. Role Assignment\nBad: \"Write a market analysis\"\nGood: \"You are a McKinsey senior analyst with 15 years in SaaS. Write a competitive market analysis for...\"\nResult: 10x more structured, opinionated output.\n\n🔹 2. Chain-of-Thought Prompting\nAdding \"Think step by step\" or breaking tasks into reasoning steps dramatically reduces hallucination.\n\n🔹 3. Output Format Constraints\nTell the LLM EXACTLY what format to return:\n\"Return ONLY a valid JSON object with keys: title, summary, score. No extra text.\"\n\n🔹 4. Few-Shot Examples\nGiving the model 2-3 examples of what good output looks like produces far more consistent results than zero-shot prompting.\n\n🔹 5. Self-Critique Loops\nAfter generating output, prompt the model to critique its own work. The revision is almost always better.\n\nThis last one is exactly what my Nova agent does in my AutoGen Studio project — it audits the AI-generated report before the final draft is published.\n\nPrompt engineering is the difference between a demo and a production AI system.\n\nWhat prompt technique has worked best for you? Drop it below 👇\n\n#PromptEngineering #GenAI #LLM #AIEngineering #MachineLearning #AI #SoftwareDevelopment",
       "hashtags": [
@@ -38,7 +38,9 @@
         "#AIEngineering",
         "#MachineLearning",
         "#AI"
-      ]
+      ],
+      "sentAt": "2026-06-20T04:14:37.304Z",
+      "linkedinPostId": "urn:li:share:7473951416806686723"
     },
     {
       "day": 3,
