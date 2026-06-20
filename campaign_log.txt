@@ -10,3 +10,5 @@
 [2026-06-20T04:14:37.305Z] 📝 linkedin_posts.json updated — Day 2 marked as sent.
 [2026-06-20T04:14:37.305Z] 📊 13 posts remaining in campaign.
 [2026-06-20T04:14:37.305Z] ⏭️  Next up: Day 3 — "LLMs explained without the jargon" (tomorrow at 8:30 AM IST)
+[2026-06-20T06:57:06.454Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-20T06:57:06.456Z] ⏭️  Already posted today (Day 2 at 2026-06-20T04:14:37.304Z). Skipping duplicate.
