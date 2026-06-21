@@ -22,3 +22,5 @@
 [2026-06-21T03:01:17.625Z] 📝 linkedin_posts.json updated — Day 3 marked as sent.
 [2026-06-21T03:01:17.625Z] 📊 12 posts remaining in campaign.
 [2026-06-21T03:01:17.625Z] ⏭️  Next up: Day 4 — "My first real API call — Google Gemini" (tomorrow at 8:30 AM IST)
+[2026-06-21T07:28:46.203Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-21T07:28:46.205Z] ⏭️  Already posted today (Day 3 at 2026-06-21T03:01:17.625Z). Skipping duplicate.
