@@ -45,7 +45,7 @@
     {
       "day": 3,
       "theme": "LLMs explained without the jargon",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "I read 5 articles about LLMs and still didn't understand them.\n\nThen I wrote 9 lines of code and everything clicked.\n\nHere's the developer-first explanation nobody gives you 👇\n\nA Large Language Model is a statistical pattern machine trained on most of the internet's text.\n\nWhen you send it a prompt, it's not \"thinking\" — it's predicting: \"Given everything I've seen, what token (word/piece) comes next?\"\n\nBut here's where it gets interesting for builders:\n\n🧠 The model has compressed world knowledge into weights\n→ This means it \"knows\" how experts write, reason, and conclude\n\n📐 Context Window = Working Memory\n→ Everything you send in one API call is the model's entire \"awareness\"\n→ Modern models (Gemini 1.5 Pro) support 1M+ tokens — that's essentially a whole codebase\n\n🔌 Tool Calling = LLMs with hands\n→ You can give an LLM access to functions (search web, run code, query DB)\n→ It decides WHEN to call them and WHAT to pass\n→ This is the foundation of AI agents\n\n🔗 The magic isn't any single LLM — it's orchestration\n→ Chaining multiple specialized LLM calls\n→ Passing context between them intelligently\n→ That's what multi-agent systems are about\n\nOnce I understood LLMs as programmable reasoning engines — not chatbots — everything clicked.\n\nWhat's one AI concept that confused you before it suddenly made sense?\n\n#LLM #GenAI #AIEngineering #MachineLearning #AI #TechEducation #BuildInPublic",
       "hashtags": [
@@ -55,7 +55,9 @@
         "#MachineLearning",
         "#AI",
         "#TechEducation"
-      ]
+      ],
+      "sentAt": "2026-06-21T03:01:17.625Z",
+      "linkedinPostId": "urn:li:share:7474295350493749248"
     },
     {
       "day": 4,

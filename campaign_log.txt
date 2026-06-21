@@ -16,3 +16,9 @@
 [2026-06-20T06:57:20.824Z] ⏭️  Already posted today (Day 2 at 2026-06-20T04:14:37.304Z). Skipping duplicate.
 [2026-06-20T07:55:14.802Z] === GitHub Actions Auto-Post Triggered ===
 [2026-06-20T07:55:14.804Z] ⏭️  Already posted today (Day 2 at 2026-06-20T04:14:37.304Z). Skipping duplicate.
+[2026-06-21T03:01:16.908Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-21T03:01:16.911Z] Posting Day 3: "LLMs explained without the jargon"
+[2026-06-21T03:01:17.624Z] ✅ SUCCESS: Day 3 posted! LinkedIn Post ID: urn:li:share:7474295350493749248
+[2026-06-21T03:01:17.625Z] 📝 linkedin_posts.json updated — Day 3 marked as sent.
+[2026-06-21T03:01:17.625Z] 📊 12 posts remaining in campaign.
+[2026-06-21T03:01:17.625Z] ⏭️  Next up: Day 4 — "My first real API call — Google Gemini" (tomorrow at 8:30 AM IST)
