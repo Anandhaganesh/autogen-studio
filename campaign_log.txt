@@ -30,3 +30,5 @@
 [2026-06-22T03:01:23.270Z] 📝 linkedin_posts.json updated — Day 4 marked as sent.
 [2026-06-22T03:01:23.270Z] 📊 11 posts remaining in campaign.
 [2026-06-22T03:01:23.270Z] ⏭️  Next up: Day 5 — "Multi-Agent AI Systems — The future of software" (tomorrow at 8:30 AM IST)
+[2026-06-22T08:53:00.971Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-22T08:53:00.974Z] ⏭️  Already posted today (Day 4 at 2026-06-22T03:01:23.270Z). Skipping duplicate.
