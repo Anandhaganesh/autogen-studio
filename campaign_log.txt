@@ -38,3 +38,5 @@
 [2026-06-23T03:01:24.055Z] 📝 linkedin_posts.json updated — Day 5 marked as sent.
 [2026-06-23T03:01:24.055Z] 📊 10 posts remaining in campaign.
 [2026-06-23T03:01:24.055Z] ⏭️  Next up: Day 6 — "Project Teaser — Something big is coming" (tomorrow at 8:30 AM IST)
+[2026-06-23T06:43:26.984Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-23T06:43:26.987Z] ⏭️  Already posted today (Day 5 at 2026-06-23T03:01:24.054Z). Skipping duplicate.
