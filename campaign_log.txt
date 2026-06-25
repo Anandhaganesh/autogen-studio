@@ -54,3 +54,5 @@
 [2026-06-25T03:01:24.478Z] 📝 linkedin_posts.json updated — Day 7 marked as sent.
 [2026-06-25T03:01:24.478Z] 📊 8 posts remaining in campaign.
 [2026-06-25T03:01:24.478Z] ⏭️  Next up: Day 8 — "How AI agents actually talk to each other" (tomorrow at 8:30 AM IST)
+[2026-06-25T06:42:36.718Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-25T06:42:36.721Z] ⏭️  Already posted today (Day 7 at 2026-06-25T03:01:24.478Z). Skipping duplicate.
