@@ -112,7 +112,7 @@
     {
       "day": 7,
       "theme": "AutoGen Studio — Full Project Launch 🚀",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "I typed one sentence.\n\n7 AI agents went to work.\n\n45 seconds later: full market analysis, competitive teardown, tech blueprint, and a brutal Go/No-Go verdict.\n\nHere's exactly how I built the system that does this 👇\n\nAutoGen Studio runs two complete AI agent teams:\n\n📝 REPORT COMPILER TEAM\n→ Dr. Atlas: Researches facts, statistics, references across the web\n→ Skye: Structures raw data into a chapter-by-chapter outline  \n→ Sterling: Expands outline into a full descriptive Markdown report\n→ Nova: Quality Inspector — audits and critiques the draft\n→ Sterling performs a final edit based on Nova's feedback\n\n🚀 STARTUP VALIDATOR TEAM\n→ Valerie: Researches competitors, market size, customer demographics\n→ Pax: Evaluates tech stack complexity and scaling blueprints\n→ Damien: Devil's Advocate — brutally critiques every flaw\n→ Vera: Investment Partner — delivers SWOT matrix + Go/No-Go score\n\n━━━━━━━━━━━━━━━━━━━━━━\n⚙️ TECH STACK\n━━━━━━━━━━━━━━━━━━━━━━\n→ Frontend: React (Vite) + Custom dark mode UI with glassmorphism\n→ Backend: Node.js + Express\n→ LLMs: Google Gemini 2.0 Flash / 1.5 Pro + HuggingFace (Qwen 2.5 72B, LLaMA 3.3)\n→ Orchestration: Custom sequential promise-chain state machine\n→ Database: JSON-based persistent storage\n\n━━━━━━━━━━━━━━━━━━━━━━\n💡 THE HARD PART\n━━━━━━━━━━━━━━━━━━━━━━\nBuilding the orchestration engine that:\n- Passes context between agents without losing information\n- Handles streaming responses in real-time\n- Manages agent \"personalities\" through system prompts\n- Switches between Gemini and HuggingFace seamlessly\n\n🔗 GitHub: https://github.com/Anandhaganesh/autogen-studio\n\nThis is what 90 days of learning Gen AI looks like when you build instead of just consume.\n\nIf this is the kind of engineering you want on your team — let's talk 🤝\n\n#AutoGen #MultiAgentAI #GenAI #AIEngineering #GoogleGemini #HuggingFace #BuildInPublic #OpenToWork #React #NodeJS",
       "hashtags": [
@@ -123,7 +123,9 @@
         "#GoogleGemini",
         "#HuggingFace",
         "#OpenToWork"
-      ]
+      ],
+      "sentAt": "2026-06-25T03:01:24.478Z",
+      "linkedinPostId": "urn:li:share:7475744931156754432"
     },
     {
       "day": 8,
