@@ -182,7 +182,7 @@
     {
       "day": 11,
       "theme": "What Gemini 2.0 Flash taught me about speed vs quality",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "My AI pipeline took 16.5 seconds from input to output.\n\nUsers were abandoning it before it finished.\n\nOne model swap cut it to 7 seconds — with BETTER quality output.\n\nHere's the counterintuitive move that saved the product 👇\n\nWhen I started AutoGen Studio, I used Gemini 1.5 Pro for everything.\nReasonable choice — it's incredibly capable.\n\nBut in an agentic system with 4-5 sequential LLM calls, latency compounds:\n→ Agent 1: 3.2s\n→ Agent 2: 4.1s  \n→ Agent 3: 5.8s\n→ Agent 4: 3.4s\n= 16.5 seconds for a user to see ANYTHING\n\nThat's a dead product.\n\nSo I switched research/routing agents to Gemini 2.0 Flash. Here's what happened:\n\n⚡ Flash agents: 0.8-1.2s average\n🧠 Pro agents (writing/analysis only): 3-4s\n\nTotal pipeline: ~7 seconds — and users see streaming output from second 1.\n\nBut here's the nuanced insight:\n\nFlash is NOT just a faster, dumber Pro. It's a different model with different strengths:\n→ Flash = Excellent at following instructions precisely and quickly\n→ Pro = Better at nuanced reasoning and long-form synthesis\n\nMy hybrid strategy:\n→ Use Flash for: research routing, outline generation, classification, formatting\n→ Use Pro for: final writing, complex analysis, multi-step reasoning\n\nNow my agents feel like a fast, intelligent team instead of a slow, sequential queue.\n\nThis is model selection strategy — one of the most underrated skills in AI engineering.\n\nHow do you balance speed vs quality in your AI projects?\n\n#GoogleGemini #GenAI #AIEngineering #LLM #Performance #AI #MachineLearning #SoftwareDevelopment",
       "hashtags": [
@@ -192,7 +192,9 @@
         "#LLM",
         "#Performance",
         "#AI"
-      ]
+      ],
+      "sentAt": "2026-06-29T03:01:24.191Z",
+      "linkedinPostId": "urn:li:share:7477194481503498241"
     },
     {
       "day": 12,
