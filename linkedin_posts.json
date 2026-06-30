@@ -199,7 +199,7 @@
     {
       "day": 12,
       "theme": "The Startup Validator — My favorite feature",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "I fed my startup idea to an AI agent whose ONLY job is to destroy it.\n\nIt found 6 fatal flaws I had completely missed.\n\nMeet Damien — the most brutally honest feedback I've ever received 👇\n\nYou type your idea. Four agents go to work:\n\n🔍 VALERIE — Market Scout\n\"Your target market is ~47M SMBs in India. Key competitors: Razorpay, Instamojo. Differentiation gap exists in...\"\n\n⚙️ PAX — Tech Architect  \n\"MVP requires: React frontend, Node.js API, PostgreSQL. Recommended: Deploy on Railway. Scale risk at 10k users is...\"\n\n😈 DAMIEN — Devil's Advocate (my personal favorite)\n\"Here's what will kill this idea: Customer acquisition cost vs lifetime value math doesn't work. B2B sales cycle in this segment averages 6 months...\"\n\n💰 VERA — Investment Partner\nDelivers the final synthesis:\n→ Strengths: [list]\n→ Weaknesses: [list]\n→ Opportunities: [list]  \n→ Threats: [list]\n→ Risk Rating: Medium-High\n→ Investment Verdict: CONDITIONAL GO ✅\n\nWhat makes Damien special:\nI deliberately made him antagonistic. His system prompt instructs him to find every flaw, assume worst-case scenarios, and challenge every assumption.\n\nThe best feedback I got on a real startup idea came from Damien — not from humans who were being polite.\n\nThis is what AI can do that humans sometimes can't: give you the unfiltered truth.\n\n🔗 Try it yourself: https://github.com/Anandhaganesh/autogen-studio\n\nWhat startup idea would you want Damien to tear apart? 😂\n\n#StartupValidator #GenAI #AIAgents #Startup #AIEngineering #MultiAgentAI #BuildInPublic",
       "hashtags": [
@@ -209,7 +209,9 @@
         "#Startup",
         "#AIEngineering",
         "#MultiAgentAI"
-      ]
+      ],
+      "sentAt": "2026-06-30T03:01:24.740Z",
+      "linkedinPostId": "urn:li:share:7477556871197782016"
     },
     {
       "day": 13,

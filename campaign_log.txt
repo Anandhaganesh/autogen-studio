@@ -88,3 +88,9 @@
 [2026-06-29T03:01:24.191Z] ⏭️  Next up: Day 12 — "The Startup Validator — My favorite feature" (tomorrow at 8:30 AM IST)
 [2026-06-29T07:24:22.669Z] === GitHub Actions Auto-Post Triggered ===
 [2026-06-29T07:24:22.671Z] ⏭️  Already posted today (Day 11 at 2026-06-29T03:01:24.191Z). Skipping duplicate.
+[2026-06-30T03:01:23.855Z] === GitHub Actions Auto-Post Triggered ===
+[2026-06-30T03:01:23.858Z] Posting Day 12: "The Startup Validator — My favorite feature"
+[2026-06-30T03:01:24.740Z] ✅ SUCCESS: Day 12 posted! LinkedIn Post ID: urn:li:share:7477556871197782016
+[2026-06-30T03:01:24.740Z] 📝 linkedin_posts.json updated — Day 12 marked as sent.
+[2026-06-30T03:01:24.741Z] 📊 3 posts remaining in campaign.
+[2026-06-30T03:01:24.741Z] ⏭️  Next up: Day 13 — "10 lessons from 90 days of building with Gen AI" (tomorrow at 8:30 AM IST)
