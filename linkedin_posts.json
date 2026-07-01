@@ -216,7 +216,7 @@
     {
       "day": 13,
       "theme": "10 lessons from 90 days of building with Gen AI",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "90 days ago I thought Gen AI was just a smarter search bar.\n\nToday I have 7 AI agents running in production — built entirely from scratch.\n\nHere are the 10 things I wish someone had told me on Day 1 👇\n\n1️⃣ Start with one API call, not a framework\nLearn the raw API before adding abstractions. You'll understand what every library actually does.\n\n2️⃣ LLMs are not deterministic. Design for variation.\nThe same prompt can return different outputs. Build systems that are resilient to this.\n\n3️⃣ Temperature is the most underused parameter\nLow temp (0.1-0.3) for structured output. High temp (0.7-0.9) for creative writing. Match it to the task.\n\n4️⃣ Streaming UX is not optional for agents\nUsers will not wait 15 seconds staring at a spinner. Stream everything.\n\n5️⃣ Context is your most valuable resource\nEvery token you put in context is a decision. Be ruthless about what each agent actually needs.\n\n6️⃣ The critic agent is underrated\nAdd a \"review\" step to any AI pipeline. Quality improves dramatically with adversarial self-review.\n\n7️⃣ Personas make agents perform better\nNaming an agent \"Damien, the Devil's Advocate\" and giving it a personality produces more useful output than saying \"critically analyze this.\"\n\n8️⃣ Error handling in LLM systems is different\nLLMs fail silently — they return text, just wrong text. Validate outputs structurally, not just for errors.\n\n9️⃣ Open source models are production-ready\nQwen 2.5 72B performs competitively with GPT-4 on many tasks. Cost savings are significant at scale.\n\n🔟 Build something you'd actually use\nThe best projects solve a problem you personally have. I was tired of shallow research. AutoGen Studio fixed that for me.\n\nWhich of these resonates most with you?\n\n#GenAI #AIEngineering #LessonsLearned #MachineLearning #BuildInPublic #SoftwareDevelopment #LLM",
       "hashtags": [
@@ -225,7 +225,9 @@
         "#LessonsLearned",
         "#MachineLearning",
         "#BuildInPublic"
-      ]
+      ],
+      "sentAt": "2026-07-01T03:01:26.258Z",
+      "linkedinPostId": "urn:li:share:7477919266000760832"
     },
     {
       "day": 14,
