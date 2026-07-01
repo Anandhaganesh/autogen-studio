@@ -102,3 +102,5 @@
 [2026-07-01T03:01:26.258Z] 📝 linkedin_posts.json updated — Day 13 marked as sent.
 [2026-07-01T03:01:26.258Z] 📊 2 posts remaining in campaign.
 [2026-07-01T03:01:26.259Z] ⏭️  Next up: Day 14 — "The future of AI agents — my honest take" (tomorrow at 8:30 AM IST)
+[2026-07-01T07:06:30.331Z] === GitHub Actions Auto-Post Triggered ===
+[2026-07-01T07:06:30.333Z] ⏭️  Already posted today (Day 13 at 2026-07-01T03:01:26.258Z). Skipping duplicate.
