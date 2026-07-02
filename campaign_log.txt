@@ -110,3 +110,5 @@
 [2026-07-02T03:01:30.177Z] 📝 linkedin_posts.json updated — Day 14 marked as sent.
 [2026-07-02T03:01:30.177Z] 📊 1 posts remaining in campaign.
 [2026-07-02T03:01:30.177Z] ⏭️  Next up: Day 15 — "Gratitude + Open to Opportunities" (tomorrow at 8:30 AM IST)
+[2026-07-02T06:34:26.006Z] === GitHub Actions Auto-Post Triggered ===
+[2026-07-02T06:34:26.009Z] ⏭️  Already posted today (Day 14 at 2026-07-02T03:01:30.176Z). Skipping duplicate.
