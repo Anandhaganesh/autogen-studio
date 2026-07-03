@@ -249,7 +249,7 @@
     {
       "day": 15,
       "theme": "Gratitude + Open to Opportunities",
-      "status": "pending",
+      "status": "sent",
       "scheduled_time": "08:30",
       "content": "15 days ago I almost didn't post Day 1.\n\nI thought: \"Who is going to care about another developer learning AI?\"\n\nHere's what happened when I posted anyway — and what I'm looking for next 🙏\n\nOver the past 15 days, I've shared:\n→ Why I started learning Gen AI\n→ How LLMs, prompt engineering, and agents actually work\n→ The full build story of AutoGen Studio\n→ The bugs, the breakthroughs, and the lessons\n→ My honest take on where AI is heading\n\nBuilding in public was uncomfortable at first. But the conversations, the encouragement, and the connections made it absolutely worth it.\n\nHere's where I am today:\n\n✅ I've built a production-quality multi-agent AI system from scratch\n✅ I understand LLM orchestration, prompt engineering, and agentic patterns\n✅ I can integrate Google Gemini, HuggingFace, and open-source models\n✅ I'm a developer who doesn't just use AI tools — I build them\n\n🔗 AutoGen Studio: https://github.com/Anandhaganesh/autogen-studio\n\nAnd yes — I am actively looking for opportunities 🙋\n\nIf you're building:\n→ AI-native products\n→ Agent-based systems\n→ Developer tools powered by LLMs\n→ Or anything ambitious in the Gen AI space\n\n...I'd love to talk.\n\nI bring: curiosity, shipping velocity, full-stack skills, and genuine passion for this technology.\n\nDM me. Let's build something incredible together. 🚀\n\nTo everyone who liked, commented, shared, or just read along — thank you. You made this journey real.\n\n#OpenToWork #GenAI #AIEngineering #Hiring #MultiAgentAI #BuildInPublic #TechJobs #AIJobs #MachineLearning #SoftwareEngineering",
       "hashtags": [
@@ -260,7 +260,9 @@
         "#MultiAgentAI",
         "#BuildInPublic",
         "#TechJobs"
-      ]
+      ],
+      "sentAt": "2026-07-03T03:01:22.154Z",
+      "linkedinPostId": "urn:li:share:7478644024468205571"
     }
   ]
 }
